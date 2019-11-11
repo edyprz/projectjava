@@ -1,6 +1,7 @@
 package proyectofinal;
 
 import java.io.Serializable;
+import java.util.List;
 import java.util.Scanner;
 
 public class Alumno implements Persona, Serializable {
@@ -10,7 +11,17 @@ public class Alumno implements Persona, Serializable {
 	private String apellidoMaterno;
 	private String correo;
 	private String carrera;
-	private int matricula;
+	private String matricula;
+	//private List<Horario> horario;
+
+
+	//public List<Horario> getHorario() {
+		//return horario;
+	//}
+
+	//public void setHorario(List<Horario> horario) {
+		//this.horario = horario;
+	//}
 
 	public String getCarrera() {
 		return carrera;
@@ -20,11 +31,11 @@ public class Alumno implements Persona, Serializable {
 		this.carrera = carrera;
 	}
 
-	public int getMatricula() {
+	public String getMatricula() {
 		return matricula;
 	}
 
-	public void setMatricula(int matricula) {
+	public void setMatricula(String matricula) {
 		this.matricula = matricula;
 	}
 
@@ -86,7 +97,8 @@ public class Alumno implements Persona, Serializable {
 		System.out.println("Escribe la carrera:");
 		this.carrera = scan.nextLine();
 		System.out.println("Escribe la matricula:");
-		this.matricula = scan.nextInt();
+		this.matricula = scan.nextLine();
+		//this.horario = null;
 	}
-	
+		
 }

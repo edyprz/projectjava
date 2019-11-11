@@ -15,11 +15,10 @@ public class Serializacion<E> {
 			ObjectOutputStream os = new ObjectOutputStream(fs);
 			
 			os.writeObject(lista);
-			System.out.println("Archivo serializado...");
-			
+			fs.close();		
 			os.close();
-			//fs.close();
-		} catch (IOException e) {
+	
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}

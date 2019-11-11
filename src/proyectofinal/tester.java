@@ -21,7 +21,7 @@ public class tester {
 	static List<Horario> listaHorario = new ArrayList<Horario>();
 	static String archHorario = "horario.ser";
 	
-	
+	static String mat;
 	
 
 
@@ -40,9 +40,11 @@ public class tester {
 		listaHorario = util.deserializaLista(archHorario);
 
 		
-		int opcion, operacion = 0;
-			do {
+		int opcion, operacion;
+
+		do {
 			menuprincipal();
+
 			opcion = scan.nextInt();
 			switch(opcion){
 				case 1://Alta
@@ -69,7 +71,7 @@ public class tester {
         	util.serializaLista(archSalon, listaSalon);
         	util.serializaLista(archUea, listaUea);
         	util.serializaLista(archHorario, listaHorario);
-
+        	System.out.println("SERIALIZANDO...");
 		
 	}
 
@@ -81,6 +83,8 @@ public class tester {
 	
 
 public static void menuprincipal() {
+	
+
 	System.out.println("\n Menu Principal"+
 			"\n ========================" + 
 			"\n Seleccione una opcion: "+
@@ -118,13 +122,15 @@ public static void buscar() {
 			case 1://Alumno
 
 					 operacion = 0;
+
                      System.out.println("Dame la matricula");
-                     int mat = scan.nextInt();
-                     
+                     scan.nextLine();
+                     String mat = scan.nextLine();
+                     labelal:{
                      Iterator<Alumno> iter = listaAlumno.iterator();
                      while(iter.hasNext()) {
                     	 Alumno elemento = iter.next();
-                    	 if(elemento.getMatricula() == mat) {
+                    	 if(elemento.getMatricula().equalsIgnoreCase(mat)) {
          					System.out.println(listaAlumno.get(listaAlumno.indexOf(elemento)));
                     		 opciones();
          					 operacion = scan.nextInt();
@@ -133,17 +139,23 @@ public static void buscar() {
          								Alumno actualiza = new Alumno();
          								actualiza.registro();
          								actualiza.registroAlumno();
-         								listaAlumno.set(listaAlumno.indexOf(elemento.getMatricula()), actualiza);
+         								listaAlumno.set(listaAlumno.indexOf(elemento), actualiza);
          								System.out.println(listaAlumno);
+         								
          								break;
          							case 2://Elimina
          								listaAlumno.remove(listaAlumno.indexOf(elemento));
          								System.out.println(listaAlumno);
-         								break;
+         								break labelal;
+         								//break;
+         					//		case 3://Agregar Uea al horario
+         									//agregahorario();
+         								//break;
          							default:
          								break;
-         						}	
+         						}
          				}
+                     }	 
                      }
                      
 
@@ -151,8 +163,9 @@ public static void buscar() {
 			case 2://Profesor
 				 operacion = 0;
                  System.out.println("Dame el numero economico");
+                 scan.nextLine();
                  String noeco = scan.nextLine();
-                 
+                 labelpro:{
                  Iterator<Profesor> iterpro = listaProfesor.iterator();
                  while(iterpro.hasNext()) {
                 	 Profesor elemento = iterpro.next();
@@ -171,22 +184,24 @@ public static void buscar() {
      							case 2://Elimina
      								listaProfesor.remove(listaProfesor.indexOf(elemento));
      								System.out.println(listaProfesor);
-     								break;
+     								break labelpro;
      							default:
      								break;
      						}	
      				}
+                 }	 
                  }
 				break;
 			case 3://Ayudante
 				 operacion = 0;
                  System.out.println("Dame el numero economico");
-                  noeco = scan.nextLine();
-                 
+                 scan.nextLine();
+                  String noeco2 = scan.nextLine();
+                  labelay:{
                  Iterator<Ayudante> iterayu = listaAyudante.iterator();
                  while(iterayu.hasNext()) {
                 	 Ayudante elemento = iterayu.next();
-                	 if(elemento.getNumEconomico().equalsIgnoreCase(noeco)) {
+                	 if(elemento.getNumEconomico().equalsIgnoreCase(noeco2)) {
      					System.out.println(listaAyudante.get(listaAyudante.indexOf(elemento)));
                 		 opciones();
      					 operacion = scan.nextInt();
@@ -201,18 +216,20 @@ public static void buscar() {
      							case 2://Elimina
      								listaAyudante.remove(listaProfesor.indexOf(elemento));
      								System.out.println(listaProfesor);
-     								break;
+     								break labelay;
      							default:
      								break;
      						}	
      				}
+                 }	 
                  }
 				break;
 			case 4://Visitante
 				 operacion = 0;
                  System.out.println("Dame el nombre");
+                 scan.nextLine();
                   String nombre = scan.nextLine();
-                 
+                  labelvi:{
                  Iterator<Visitante> itervi = listaVisitante.iterator();
                  while(itervi.hasNext()) {
                 	 Visitante elemento = itervi.next();
@@ -230,18 +247,20 @@ public static void buscar() {
      							case 2://Elimina
      								listaVisitante.remove(listaVisitante.indexOf(elemento));
      								System.out.println(listaVisitante);
-     								break;
+     								break labelvi;
      							default:
      								break;
      						}	
      				}
+                 }	 
                  }
 				break;
 			case 5://Salon
 				 operacion = 0;
                  System.out.println("Dame la clave ");
+                 scan.nextLine();
                   String clave = scan.nextLine();
-                 
+                  labelsal:{
                  Iterator<Salon> itersal = listaSalon.iterator();
                  while(itersal.hasNext()) {
                 	 Salon elemento = itersal.next();
@@ -259,22 +278,24 @@ public static void buscar() {
      							case 2://Elimina
      								listaSalon.remove(listaSalon.indexOf(elemento));
      								System.out.println(listaSalon);
-     								break;
+     								break labelsal;
      							default:
      								break;
      						}	
      				}
+                 }	 
                  }
 				break;
 			case 6://UEA
 				 operacion = 0;
                  System.out.println("Dame la clave");
-                 int  claves = scan.nextInt();
-                 
+                 scan.nextLine();
+                 String  claves = scan.nextLine();
+                 labeluea:{
                  Iterator<UEA> iteruea = listaUea.iterator();
                  while(iteruea.hasNext()) {
                 	 UEA elemento = iteruea.next();
-                	 if(elemento.getClaveUea() == claves) {
+                	 if(elemento.getClaveUea().equalsIgnoreCase(claves)) {
      					System.out.println(listaUea.get(listaUea.indexOf(elemento)));
                 		 opciones();
      					 operacion = scan.nextInt();
@@ -282,23 +303,26 @@ public static void buscar() {
      							case 1://Actualiza
      								UEA actualiza = new UEA();
      								actualiza.registro();
-     								listaUea.set(listaUea.indexOf(elemento.getClaveUea()), actualiza);
+     								listaUea.set(listaUea.indexOf(elemento), actualiza);
      								System.out.println(listaUea);
      								break;
      							case 2://Elimina
      								listaUea.remove(listaUea.indexOf(elemento));
      								System.out.println(listaUea);
-     								break;
+     								break labeluea;
      							default:
      								break;
      						}	
      				}
+                 }	 
                  }
 				break;
 	}	
 }
 
-
+//public static void agregahorario() {
+	
+//}
 
 public static void alta () {
 	//Alumno a = new Alumno();

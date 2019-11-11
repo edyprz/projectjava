@@ -4,14 +4,17 @@ import java.io.Serializable;
 import java.util.Scanner;
 public class UEA implements Serializable {
 
-	private int claveUea;
+	private String claveUea;
 	private String nombreUea;
-	private int creditos;
+	private String creditos;
 	
-	public int getClaveUea() {
+
+	
+	
+	public String getClaveUea() {
 		return claveUea;
 	}
-	public void setClaveUea(int claveUea) {
+	public void setClaveUea(String claveUea) {
 		this.claveUea = claveUea;
 	}
 	public String getNombreUea() {
@@ -20,35 +23,28 @@ public class UEA implements Serializable {
 	public void setNombreUea(String nombreUea) {
 		this.nombreUea = nombreUea;
 	}
-	public int getCreditos() {
+	public String getCreditos() {
 		return creditos;
 	}
-	public void setCreditos(int creditos) {
+	public void setCreditos(String creditos) {
 		this.creditos = creditos;
 	}
-	
-	public UEA(int claveUea, String nombreUea, int creditos) {
-		super();
-		this.claveUea = claveUea;
-		this.nombreUea = nombreUea;
-		this.creditos = creditos;
-	}
+	public String toString() {
+		return claveUea+" "+nombreUea+" "+creditos;
+	}	
     
     public UEA() {
 		super();
 	}
 	
 	public void registro() {
-		Scanner scan = new Scanner(System.in);
-		System.out.println("Escribe la clave:");
-		this.claveUea = scan.nextInt();
-		System.out.println("Escribe el nombre:");
+        Scanner scan = new Scanner(System.in);
+		System.out.println("Escribe la clave de la uea:");
+		this.claveUea = scan.nextLine();
+		System.out.println("Escribe el nombre de la UEA :");
 		this.nombreUea = scan.nextLine();
 		System.out.println("Escribe los creditos:");
-		this.creditos = scan.nextInt();
+		this.creditos = scan.nextLine();
 	}
-	
-	public String toString() {
-		return claveUea+" "+nombreUea+" "+creditos;
-	}
+
 }
